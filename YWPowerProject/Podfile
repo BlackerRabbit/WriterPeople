@@ -1,0 +1,27 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, "7.0"
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+workspace 'YWPowerProject.xcworkspace'
+xcodeproj 'YWPowerProject.xcodeproj'
+def app_pods
+    pod 'AFNetworking'
+    pod 'MBProgressHUD'
+    pod 'Mantle'
+    pod 'FMDB'
+    pod 'CocoaLumberjack'
+    pod 'MJRefresh'
+    pod 'SDWebImage'
+    pod 'WebViewJavascriptBridge'
+    pod 'ZipArchive'
+    pod 'NJKWebViewProgress'
+    pod 'YPTabBarController'
+end
+
+
+target  :YWPowerProject do
+	xcodeproj 'YWPowerProject.xcodeproj'
+    app_pods
+end 
+
