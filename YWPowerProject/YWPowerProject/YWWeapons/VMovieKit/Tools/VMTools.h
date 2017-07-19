@@ -36,5 +36,5 @@
 +(BOOL)openZip:(NSString*)zipPath unzipto:(NSString*)unzipPath;
 +(void)removeFile:(NSString *)filePath;
 
-+(void)dealWithregularString:(NSString *)normalString;
++(NSString *)dealWithregularString:(NSString *)normalString;
 @end

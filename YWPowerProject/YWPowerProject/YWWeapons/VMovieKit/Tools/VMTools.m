@@ -248,19 +248,38 @@ done:
 
 -(void)test{
     
-//    [UIColor colorWithRed:R/255.f green:G/255.f blue:B/255.f alpha:1]
+
 
 }
 
-
-+(void)dealWithregularString:(NSString *)normalString{
-
++(NSRegularExpression *)regular:(NSString *)regString{
+    
     NSError *error;
-    NSRegularExpression *regular = [NSRegularExpression regularExpressionWithPattern:@"[\r\n\f\t]*" options:0 error:&error];
+    NSRegularExpression *regular = [NSRegularExpression regularExpressionWithPattern:regString options:0 error:&error];
     if (error) {
-        return;
+        return nil;
     }
-    normalString = [regular stringByReplacingMatchesInString:normalString options:0 range:NSMakeRange(0, normalString.length) withTemplate:@"\n"];
+    return regular;
+}
+
+
+
+
++(NSString *)dealWithregularString:(NSString *)normalString{
+    
+    NSString *content = [normalString replaceString:@"\r" withString:@""];
+   
+    NSRegularExpression *regularNew = [VMTools regular:@"\\s*\\n+\\s*"];
+    NSString *newString = [regularNew stringByReplacingMatchesInString:content options:0 range:NSMakeRange(0, content.length) withTemplate:@"\n　　"];
+    return newString;
+    /*
+    NSRegularExpression *regular = [VMTools regular:@" {2,}"];
+    NSString *blankString = [regular stringByReplacingMatchesInString:normalString options:0 range:NSMakeRange(0, normalString.length) withTemplate:@""];
+    
+    regular = [VMTools regular:@"\\s{2,}"];
+    NSString *finlaString = [regular stringByReplacingMatchesInString:blankString options:0 range:NSMakeRange(0, blankString.length) withTemplate:@"\n"];
+    return finlaString;
+     */
 }
 
 

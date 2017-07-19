@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreText/CoreText.h>
 
 #define BOOK_DRAW_RECT CGRectMake(0, 0, SCREEN_WIDTH - 40, SCREEN_HEIGHT - 80)
 
@@ -24,11 +25,15 @@
 @property (nonatomic, strong, readwrite) NSString *words;
 
 
+
 +(YWBookObject *)bookWithPath:(NSString *)path;
+
++(YWBookObject *)currentBook;
+
 
 @property (nonatomic, strong, readwrite) NSMutableArray *pageArray;
 @property (nonatomic, strong, readwrite) NSMutableArray *attStringAry;
 
--(NSArray *)loadBookWithPagesSimple;
--(NSDictionary *)attDiconary;
++(NSDictionary *)attDiconary;
++(CTFrameRef )frameRefWith:(NSString *)content;
 @end

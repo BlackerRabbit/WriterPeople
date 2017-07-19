@@ -6,10 +6,12 @@
 //  Copyright © 2017年 蒋正峰. All rights reserved.
 //
 
+#import "YWPowerProject-Swift.h"
 #import "YWReadController.h"
 #import "YWBookObject.h"
 #import "VMCyclesScrollview.h"
 #import "YWReadCell.h"
+
 
 static NSString *const readCellReuseIdentifer = @"readCellReuseIdentifer";
 
@@ -22,18 +24,6 @@ static NSString *const readCellReuseIdentifer = @"readCellReuseIdentifer";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.mainCollectionView];
-    YWBookObject *currentBook = [YWBookObject bookWithPath:self.bookPath];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSArray *array = [currentBook loadBookWithPagesSimple];
-        if (array) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self builUIWithContent:array];
-            });
-        }
-    });
-    
-    
     
     // Do any additional setup after loading the view.
 }
@@ -44,6 +34,8 @@ static NSString *const readCellReuseIdentifer = @"readCellReuseIdentifer";
     }
     self.bookStrings = array;
     [self.mainCollectionView reloadData];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +55,7 @@ static NSString *const readCellReuseIdentifer = @"readCellReuseIdentifer";
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [self.mainCollectionView dequeueReusableCellWithReuseIdentifier:readCellReuseIdentifer forIndexPath:indexPath];
+    UICollectionViewCell *cell = [self.mainCollectionView dequeueReusableCellWithReuseIdentifier:@"haha" forIndexPath:indexPath];
     return cell;
 }
 
@@ -108,7 +100,7 @@ static NSString *const readCellReuseIdentifer = @"readCellReuseIdentifer";
         _mainCollectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:layout];
         _mainCollectionView.delegate = self;
         _mainCollectionView.dataSource = self;
-        [_mainCollectionView registerClass:[YWReadCell class] forCellWithReuseIdentifier:readCellReuseIdentifer];
+        [_mainCollectionView registerClass:[YWReadCell class] forCellWithReuseIdentifier:@"haha"];
     }
     return _mainCollectionView;
 }

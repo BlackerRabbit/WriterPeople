@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YWPowerProject/ViewController.m"
-            timestampString = "517375770.755168"
+            filePath = "YWPowerProject/YWWeapons/VMovieKit/Tools/VMTools.m"
+            timestampString = "518442206.950137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "+dealWithregularString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

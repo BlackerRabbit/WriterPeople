@@ -14,6 +14,8 @@
 
 #import "TestViewController.h"
 #import "YWBookObject.h"
+#import "YWReadView.h"
+
 
 
 #define APPKEYFORWEIBOPLATFORM @"1464649506"
@@ -36,49 +38,34 @@
     [super viewDidLoad];
 
     NSDate *date = [NSDate date];
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"海涅" ofType:@"txt"];
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"沙僧" ofType:@"txt"];
     NSString *normal = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    [VMTools dealWithregularString:normal];
-    
-    UILabel *label = [UILabel new];
-    label.width = self.view.width - 40;
-    label.height = 0;
-    label.font = [UIFont systemFontOfSize:12];
-    label.textColor = [UIColor blackColor];
-    label.numberOfLines = 0;
-    label.text = normal;
-    [label sizeToFit];
-    
-
+    normal = [VMTools dealWithregularString:normal];
     YWBookObject *book = [YWBookObject bookWithPath:path];
+    
     
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:scrollView];
-    /*
-    NSArray *array = [book loadBookWithPagesSimple];
-    float xoffset = 10;
-    for (NSAttributedString *str in book.attStringAry) {
-        UILabel *bookLabel = [[UILabel alloc]initWithFrame:CGRectMake(xoffset, 40, self.view.width - 20, SCREEN_HEIGHT - 80)];
-        bookLabel.numberOfLines = 0;
-        NSString *attStr = str.string;
-        NSAttributedString *finalAtt = [[NSAttributedString alloc]initWithString:attStr attributes:[book attDiconary]];
-        bookLabel.attributedText = finalAtt;
-        [scrollView addSubview:bookLabel];
+
+    float xoffset = 20;
+    for (NSValue *value in book.pageArray) {
+        NSRange range = [value rangeValue];
+        NSString *word = [book.words substringWithRange:range];
+        
+        YWReadView *readView = [[YWReadView alloc]initWithFrame:BOOK_DRAW_RECT];
+        readView.left = xoffset;
+        readView.top = 40;
+        readView.content = word;
+        [scrollView addSubview:readView];
         xoffset += self.view.width;
+        readView.backgroundColor = [UIColor whiteColor];
+        readView.backgroundColor = [UIColor lightGrayColor];
     }
-    */
     
-    [scrollView addSubview:label];
     scrollView.pagingEnabled = YES;
-//    scrollView.contentSize = CGSizeMake(array.count * SCREEN_WIDTH, self.view.height);
-    scrollView.contentSize = CGSizeMake(self.view.width, label.height + 20);
+    scrollView.contentSize = CGSizeMake(book.pageArray.count * SCREEN_WIDTH, self.view.height);
     NSTimeInterval time = [date timeIntervalSinceDate:date];
     NSLog(@"时间是%fld",time);
-    
-    label.top = 0;
-    label.left = 20;
-    
-    
     
 }
 

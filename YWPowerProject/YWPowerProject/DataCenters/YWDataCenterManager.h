@@ -17,8 +17,4 @@ typedef void(^YWBookRequestHandler)(NSArray *array, VMError *error);
 +(YWDataCenterManager *)shareManager;
 -(YWBookObject *)currentBook;
 -(void)findBooksWithCompleteHandler:(YWBookRequestHandler)handler;
-
-
-
-
 @end

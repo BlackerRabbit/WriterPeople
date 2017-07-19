@@ -5,10 +5,12 @@
 //  Created by 蒋正峰 on 2016/12/20.
 //  Copyright © 2016年 蒋正峰. All rights reserved.
 //
-
+@class IndexViewController;
+#import "YWPowerProject-Swift.h"
 #import "IndexViewController.h"
 #import "YWDataCenterManager.h"
 #import "YWBookObject.h"
+
 
 @interface IndexViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong, readwrite) NSMutableArray *dataAry;
@@ -23,6 +25,10 @@
     
     YWDataCenterManager *dataCenter = [YWDataCenterManager shareManager];
     
+    YWBookListViewController *list = [[YWBookListViewController alloc]init];
+    [self addChildViewController:list];
+    [self.view addSubview:list.view];
+    list.view.backgroundColor = [UIColor greenColor];
     
 }
 
